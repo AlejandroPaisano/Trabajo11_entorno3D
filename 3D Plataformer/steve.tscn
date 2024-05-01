@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgr68ndstp3sq"]
+
+[ext_resource type="Script" path="res://steve.gd" id="1_fbahc"]
+[ext_resource type="Script" path="res://salto.gd" id="2_rcywq"]
+[ext_resource type="Texture2D" uid="uid://bkvmydfn5saxg" path="res://addons/virtual_joystick/textures/joystick_tip.png" id="2_roee5"]
+[ext_resource type="Texture2D" uid="uid://bm30au8mjfc2f" path="res://addons/virtual_joystick/textures/joystick_base_outline.png" id="3_wiw3o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eebob"]
+albedo_color = Color(0.407843, 0.572549, 0.741176, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r3ho5"]
+material = SubResource("StandardMaterial3D_eebob")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_74gnx"]
+
+[node name="Steve" type="CharacterBody3D"]
+script = ExtResource("1_fbahc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_r3ho5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_74gnx")
+
+[node name="Controlador" type="Node3D" parent="."]
+top_level = true
+
+[node name="Objetivo" type="Node3D" parent="Controlador"]
+transform = Transform3D(1, 0, 0, 0, 0.973255, 0.229727, 0, -0.229727, 0.973255, 0, 2, 4)
+
+[node name="Camera3D" type="Camera3D" parent="Controlador/Objetivo"]
+transform = Transform3D(1, 0, 0, 0, 0.999565, 0.0294918, 0, -0.0294918, 0.999565, 0, 0, 0)
+
+[node name="salto" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_rcywq")
+
+[node name="TextureRect" type="TextureRect" parent="salto"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="JoystickTip" type="Sprite2D" parent="."]
+position = Vector2(1014, 505)
+texture = ExtResource("2_roee5")
+
+[node name="JoystickBaseOutline" type="Sprite2D" parent="."]
+position = Vector2(1012, 509)
+texture = ExtResource("3_wiw3o")

@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://dcgojv23sxixu"]
+
+[ext_resource type="PackedScene" uid="uid://bh0l7tftp168n" path="res://player assets/ttest.tscn" id="3_28ug8"]
+[ext_resource type="PackedScene" uid="uid://bf22qadcb5rgb" path="res://player assets/diamante_del.tscn" id="4_hnjfq"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="5_pnkli"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ke0i"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nnla2"]
+albedo_color = Color(0.74902, 0.733333, 0.137255, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yvsic"]
+material = SubResource("StandardMaterial3D_nnla2")
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kmrtn"]
+sky_top_color = Color(0.682353, 0.431373, 0.121569, 1)
+sky_horizon_color = Color(0.647059, 0.407843, 0.631373, 1)
+
+[sub_resource type="Sky" id="Sky_xt3c3"]
+sky_material = SubResource("ProceduralSkyMaterial_kmrtn")
+
+[sub_resource type="Environment" id="Environment_kbtd4"]
+background_mode = 2
+sky = SubResource("Sky_xt3c3")
+ambient_light_source = 2
+ambient_light_color = Color(0.270588, 0.235294, 0.12549, 1)
+
+[node name="Nivel 1" type="Node3D"]
+
+[node name="floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
+shape = SubResource("BoxShape3D_4ke0i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
+mesh = SubResource("BoxMesh_yvsic")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866496, 0.499184, 0, -0.499184, 0.866496, 0, 3.00987, 4.385)
+shadow_enabled = true
+
+[node name="coins" type="Node3D" parent="."]
+
+[node name="diamond_teamYellow_gltf" parent="coins" instance=ExtResource("4_hnjfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.39099, 2.3588, -0.489964)
+
+[node name="diamond_teamYellow_gltf2" parent="coins" instance=ExtResource("4_hnjfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27649, 2.75704, -0.305037)
+
+[node name="diamond_teamYellow_gltf3" parent="coins" instance=ExtResource("4_hnjfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91927, 2.3588, -2.48672)
+
+[node name="diamond_teamYellow_gltf4" parent="coins" instance=ExtResource("4_hnjfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180964, 1.10607, -0.489964)
+
+[node name="diamond_teamYellow_gltf5" parent="coins" instance=ExtResource("4_hnjfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.19337, 2.61991, -0.489964)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kbtd4")
+
+[node name="Virtual Joystick" parent="." instance=ExtResource("5_pnkli")]
+
+[node name="Skeleton_Mage" parent="." instance=ExtResource("3_28ug8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.00527)
